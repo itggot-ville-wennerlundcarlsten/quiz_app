@@ -1,9 +1,6 @@
 class App < Sinatra::Base
 
 	
-	require 'sinatra'
-	require 'slim'
-	require 'sqlite3'
 	
 	enable:sessions
 
@@ -20,15 +17,19 @@ class App < Sinatra::Base
 
 	get('/edit') do
 		db = SQLite3::Database.new("db.sqlite")
-		quiz = db.execute("SELECT name FROM quiz")
+		db.results_as_hash = true
+		quiz = db.execute("SELECT * FROM quiz")
 		slim(:edit,locals:{quiz:quiz})
 	end
 
-	get('/edit/?') do 
-		slim(:edit_quiz_name)
+	get('/edit/:id') do
+		db = SQLite3::Database.new("db.sqlite")
+		quiz_id = params[:id]
+		result = db.execute("SELECT * FROM quiz WHERE id=?", [quiz_id])
+		slim(:edit_quiz_name, locals:{quiz:result})
 	end 
 
-	post('edit/?') do
+	post('/edit/:id') do
 		slim(:edit_quiz_name)
 	end
 
