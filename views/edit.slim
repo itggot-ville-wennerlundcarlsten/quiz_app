@@ -1,8 +1,15 @@
 p Här kan du se alla dina quiz
 
-p 
-    'här är namnet på ditt quiz #{quiz}. 
-    a href="/" ändra
-    '
+- i = 0
+- while i < quiz.length
+    - quiz_name = quiz[i][0]
+    - i = i + 1 
+    ul 
+        li #{quiz_name} 
+        a href = "/edit/#{quiz_name}" ändra
+        form action="/edit/#{quiz_name}" method="POST"
+            input type="submit" value="Edit"
+   
+
     
 a href = "/" tillbaka

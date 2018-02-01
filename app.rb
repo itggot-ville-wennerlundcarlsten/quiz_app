@@ -20,9 +20,16 @@ class App < Sinatra::Base
 
 	get('/edit') do
 		db = SQLite3::Database.new("db.sqlite")
-		quiz = db.execute("SELECT name FROM quiz WHERE rowid=1")
-
+		quiz = db.execute("SELECT name FROM quiz")
 		slim(:edit,locals:{quiz:quiz})
+	end
+
+	get('/edit/?') do 
+		slim(:edit_quiz_name)
+	end 
+
+	post('edit/?') do
+		slim(:edit_quiz_name)
 	end
 
 end
