@@ -33,4 +33,12 @@ class App < Sinatra::Base
 		slim(:edit_quiz_name)
 	end
 
+	post('/name_edit/') do
+		id = params[:id]
+		new_name = params[:new_name]
+		db = SQLite3::Database.new("db.sqlite")
+		db.execute("UPDATE quiz SET name=? WHERE id=?", [new_name, id] )
+		redirect('/edit/'+id)
+	end
+
 end

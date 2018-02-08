@@ -5,8 +5,8 @@ p Här kan du se alla dina quiz
     ul 
         li #{quiz[i]["name"]} 
         a href = "/edit/#{quiz[i]["id"]}" ändra
-        form action="/edit/#{""}" method="POST"
-            input type="submit" value="Edit"
+        // form action= "/edit/#{quiz[i]["id"]}" method="POST"
+        //    input type="submit" value="Edit"
     - i = i + 1 
    
 

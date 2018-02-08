@@ -1,4 +1,15 @@
 p Hej 
-= quiz
+= quiz[0][0]
+br/
+br/
+p Ändra quizzets namn
+form action="/name_edit/"  method= "post"
+    input type= "hidden" name= "id" value= quiz[0][1]
+    input type= "text" name= "new_name"
+    input type= "submit" name= "ändra"
+br/
+
+
+
 a href = '/edit' Tillbaka 
 
